@@ -6,7 +6,7 @@
 /*   By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:57:30 by mingkang          #+#    #+#             */
-/*   Updated: 2022/12/23 13:12:05 by mingkang         ###   ########.fr       */
+/*   Updated: 2022/12/23 20:43:02 by mingkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,4 @@ void	set_projection(int key_code, t_data *data)
 	else if (key_code == K_CODE_I)
 		data->cam->prjc = ISOMETRIC;
 	draw_map(data);
-}
-
-int	exit_hook(void *vars)
-{
-	exit(0);
 }

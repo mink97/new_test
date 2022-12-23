@@ -6,7 +6,7 @@
 /*   By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:57:39 by mingkang          #+#    #+#             */
-/*   Updated: 2022/12/23 13:46:59 by mingkang         ###   ########.fr       */
+/*   Updated: 2022/12/23 20:31:26 by mingkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,13 @@ t_point	*get_vertex(t_point *point, t_data *data)
 	tmp->x *= data->cam->zoom;
 	tmp->y *= data->cam->zoom;
 	rotate_z(tmp, data->cam->alpha);
-	rotate_y(tmp, data->cam->beta);
 	rotate_x(tmp, data->cam->gamma);
+	rotate_y(tmp, data->cam->beta);
 	if (data->cam->prjc != PARALLEL)
+	{
 		change_projection(tmp, data->cam->prjc);
+		tmp->y += SRCN_HGT / 8;
+	}
 	tmp->x += SRCN_WDT / 2 + data->cam->x_offset;
 	tmp->y += SRCN_HGT / 2 + data->cam->y_offset;
 	return (tmp);

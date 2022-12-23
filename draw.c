@@ -6,7 +6,7 @@
 /*   By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:57:31 by mingkang          #+#    #+#             */
-/*   Updated: 2022/12/23 13:46:59 by mingkang         ###   ########.fr       */
+/*   Updated: 2022/12/23 21:44:13 by mingkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,18 @@ void	draw_background(t_data *data)
 	int	x;
 	int	y;
 
-	y = 0;
-	while (y < SRCN_HGT)
+	y = -1;
+	while (++y < SRCN_HGT)
 	{
-		x = 0;
-		while (x < SRCN_WDT)
+		x = -1;
+		while (++x < SRCN_WDT)
 		{
-			put_pixel(data, x, y, 0xCDC9C9);
-			x++;
+			if (data->map->bg_color != 0)
+				put_pixel(data, x, y, data->map->bg_color);
+			else
+				put_pixel(data, x, y, create_trgb(0, y * 255 / SRCN_WDT, \
+							y * 255 / SRCN_WDT, y * 255 / SRCN_WDT));
 		}
-		y++;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 }

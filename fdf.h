@@ -6,7 +6,7 @@
 /*   By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 07:49:11 by mingkang          #+#    #+#             */
-/*   Updated: 2022/12/23 14:36:13 by mingkang         ###   ########.fr       */
+/*   Updated: 2022/12/23 21:33:48 by mingkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,31 @@
 # define SRCN_WDT 1000
 # define SRCN_HGT 1000
 
+typedef enum e_bool
+{
+	FALSE,
+	TRUE
+}	t_bool;
+
+typedef enum e_color
+{
+	GRAY = 0xCDC9C9,
+	PLUM = 0xDDA0DD,
+	SKYBLUE = 0xB0E2FF,
+	CORAL = 0xFF7256,
+	BLACK = 0x1C1C1C
+}	t_color;
+
 typedef enum e_handle_key
 {
 	K_ESC = 53,
 	K_SHIFT = 257,
+	K_CODE_1 = 18,
+	K_CODE_2 = 19,
+	K_CODE_3 = 20,
+	K_CODE_4 = 21,
+	K_CODE_5 = 23,
+	K_CODE_6 = 22,
 	K_CODE_P = 35,
 	K_CODE_O = 31,
 	K_CODE_I = 34,
@@ -37,19 +58,17 @@ typedef enum e_handle_key
 	K_CODE_Z = 6,
 	K_CODE_X = 7,
 	K_CODE_ZU = 30,
-	K_CODE_ZD = 33,
+	K_CODE_ZD = 33
+}	t_handle_key;
+
+typedef enum e_handle_mouse
+{
 	M_LEFT = 1,
 	M_RIGHT = 2,
 	M_WHEEL = 3,
 	M_WHEEL_UP = 5,
 	M_WHEEL_DOWN = 4
-}	t_handle_key;
-
-typedef enum e_bool
-{
-	FALSE,
-	TRUE
-}	t_bool;
+}	t_handle_mouse;
 
 typedef enum e_prjc
 {
@@ -78,7 +97,6 @@ typedef struct s_handle
 	int	wheel_hold;
 }	t_handle;
 
-
 typedef struct s_point
 {
 	int	x;
@@ -90,9 +108,9 @@ typedef struct s_point
 typedef struct s_map
 {
 	t_point	*nodes;
+	t_color	bg_color;
 	int		width;
 	int		height;
-	int		z_min;
 	int		z_max;
 }	t_map;
 

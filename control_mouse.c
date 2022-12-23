@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   control.c                                          :+:      :+:    :+:   */
+/*   control_mouse.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:57:28 by mingkang          #+#    #+#             */
-/*   Updated: 2022/12/23 13:46:59 by mingkang         ###   ########.fr       */
+/*   Updated: 2022/12/23 20:47:15 by mingkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	mouse_move(int x, int y, void *vars)
 		}
 		else if (data->handle->wheel_hold == TRUE)
 		{
-			data->cam->beta += (x - data->handle->prev_x) * 0.002;
-			data->cam->gamma += (y - data->handle->prev_y) * 0.002;
+			data->cam->beta += (x - data->handle->prev_x) * 0.004;
+			data->cam->gamma += (y - data->handle->prev_y) * 0.004;
 		}
 	}
 	draw_map(data);
@@ -62,6 +62,12 @@ int	mouse_release(int button, int x, int y, void *vars)
 	data->handle->wheel_hold = FALSE;
 	draw_map(data);
 	return (0);
+}
+
+int	exit_hook(void *vars)
+{
+	write(1, "|quit fdf|\n", 11);
+	exit(0);
 }
 
 void	cntl_map(t_data *data)
