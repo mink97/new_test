@@ -6,7 +6,7 @@
 #    By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/19 08:08:59 by mingkang          #+#    #+#              #
-#    Updated: 2022/12/24 13:35:10 by mingkang         ###   ########.fr        #
+#    Updated: 2022/12/24 16:35:14 by mingkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ get_next_line.c get_next_line_utils.c free_strs.c
 B_SRCS	= ${SRCS} ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
-HEADER	= libft.h
+HEADER	= ./includes/
 
 OBJS	= ${SRCS:.c=.o}
 

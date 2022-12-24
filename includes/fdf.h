@@ -6,13 +6,13 @@
 /*   By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 07:49:11 by mingkang          #+#    #+#             */
-/*   Updated: 2022/12/23 21:33:48 by mingkang         ###   ########.fr       */
+/*   Updated: 2022/12/24 16:24:42 by mingkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# include "libft/libft.h"
+# include "libft.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <mlx.h>

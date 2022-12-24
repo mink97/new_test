@@ -6,10 +6,9 @@
 #    By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/24 14:48:10 by mingkang          #+#    #+#              #
-#    Updated: 2022/12/24 15:57:58 by mingkang         ###   ########.fr        #
+#    Updated: 2022/12/24 17:13:03 by mingkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 NAME		= fdf
 
@@ -26,16 +25,18 @@ RMFLAGS		= -rf
 AR			= ar
 
 ARFLAGS		= -crs
+# **************************************************************************** #
 
-#libft
+# libft
 LIBFT_DIR	= ./libft/
+
+LIBFT_NAME	= libft.a
 
 LIBFT		= ${LIBFT_DIR}libft.a
 
-# INCLUDE		= -I ${LIBFT_DIR}
+INCLUDES	= -I./includes/ -I${LIBFT_DIR}includes/
 
-
-
+# fdf
 SRCS_DIR	= ./sources/
 
 SRCS_NAME	= color_utils.c color.c common.c control_key.c control_mouse.c \
@@ -48,31 +49,49 @@ OBJS_DIR 	= objects/
 OBJS_NAME	= ${SRCS_NAME:.c=.o}
 
 OBJS		= ${addprefix ${OBJS_DIR}, ${OBJS_NAME}}
+# **************************************************************************** #
+
+COLOR_BLACK	= \033[0;30m
+COLOR_RED	= \033[0;31m
+COLOR_GREEN	= \033[0;32m
+COLOR_LBLUE	= \033[0;94m
+COLOR_YELLOW	= \033[0;33m
+COLOR_MAGENTA	= \033[0;35m
+COLOR_WHITE	= \033[0;0m
 
 all:		${NAME}
 
 ${NAME}:	${LIBFT} ${OBJS_DIR} ${OBJS}
-	${CC} ${CFLAGS} ${LIBFT} ${MLXFLAGS} ${OBJS} -o $@
+	@echo "\n${COLOR_WHITE}${NAME}: ${COLOR_GREEN}objects were created${COLOR_WHITE}"
+	@${CC} ${CFLAGS} ${LIBFT} ${MLXFLAGS} ${OBJS} -o $@
+	@echo "${COLOR_LBLUE}${NAME}: finished!!${COLOR_WHITE}"
 
 ${OBJS_DIR}:
-	mkdir ${OBJS_DIR}
+	@echo "${NAME}: ${COLOR_YELLOW}objects were creating\c"
+	@mkdir ${OBJS_DIR}
 
 ${OBJS_DIR}%.o:	${SRCS_DIR}%.c
-	${CC} ${CFLAGS} -I"./" -I"./libft/" -c $< -o $@
+	@echo ".\c"
+	@${CC} ${CFLAGS} ${INCLUDES} -c $< -o $@
 
 ${LIBFT}:
-	${MAKE} -sC ${LIBFT_DIR}
+	@echo "${LIBFT_NAME} : ${COLOR_YELLOW}creating...${COLOR_WHITE}"
+	@${MAKE} -sC ${LIBFT_DIR} bonus
+	@echo "${LIBFT_NAME} : ${COLOR_GREEN}created!!${COLOR_WHITE}"
 
 clean:
-	${MAKE} -sC ${LIBFT_DIR} clean
-	${RM} ${RMFLAGS} ${OBJ_DIR}
+	@${MAKE} -sC ${LIBFT_DIR} clean
+	@${RM} ${RMFLAGS} ${OBJS_DIR}
+	@echo "${COLOR_RED}all objects were deleted${COLOR_WHITE}"
 
 fclean:		clean
-	${RM} ${RMFLAGS} ${LIBFT}
-	${RM} ${NAME}
+	@${RM} ${RMFLAGS} ${LIBFT}
+	@${RM} ${RMFLAGS} ${NAME}
+	@echo "${COLOR_RED}fdf and libft.a were deleted${COLOR_WHITE}"
 
 re:
-	${MAKE} fclean
-	${MAKE} all
+	@${MAKE} fclean
+	@echo "-------------------------------"
+	@${MAKE} all
 
 .PHONY:		all clean fclean re bonus
