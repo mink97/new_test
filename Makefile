@@ -6,7 +6,7 @@
 #    By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/24 14:48:10 by mingkang          #+#    #+#              #
-#    Updated: 2022/12/24 17:23:00 by mingkang         ###   ########.fr        #
+#    Updated: 2022/12/24 17:50:17 by mingkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,6 @@ OBJS_NAME	= ${SRCS_NAME:.c=.o}
 OBJS		= ${addprefix ${OBJS_DIR}, ${OBJS_NAME}}
 # **************************************************************************** #
 
-COLOR_BLACK	= \033[0;30m
 COLOR_RED	= \033[0;31m
 COLOR_GREEN	= \033[0;32m
 COLOR_LBLUE	= \033[0;94m
@@ -92,7 +91,7 @@ fclean:		clean
 
 re:
 	@${MAKE} fclean
-	@echo "-------------------------------"
+	@echo "${COLOR_MAGENTA}-------------------------------${COLOR_WHITE}"
 	@${MAKE} all
 
 .PHONY:		all clean fclean re bonus

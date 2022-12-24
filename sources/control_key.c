@@ -6,7 +6,7 @@
 /*   By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:57:28 by mingkang          #+#    #+#             */
-/*   Updated: 2022/12/24 17:26:51 by mingkang         ###   ########.fr       */
+/*   Updated: 2022/12/24 17:55:11 by mingkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	exit_hook(void *vars)
 
 	data = (t_data *)vars;
 	mlx_destroy_image(data->mlx_ptr, data->img);
-	write(1, "\033[0;94m|quit fdf|\n\033[0;94m", 24);
+	write(1, "\033[0;94m|quit fdf|\n\033[0;0m", 24);
 	exit(0);
 }
 
