@@ -6,7 +6,7 @@
 #    By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/24 14:48:10 by mingkang          #+#    #+#              #
-#    Updated: 2022/12/24 17:13:03 by mingkang         ###   ########.fr        #
+#    Updated: 2022/12/24 17:23:00 by mingkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,8 @@ COLOR_WHITE	= \033[0;0m
 all:		${NAME}
 
 ${NAME}:	${LIBFT} ${OBJS_DIR} ${OBJS}
-	@echo "\n${COLOR_WHITE}${NAME}: ${COLOR_GREEN}objects were created${COLOR_WHITE}"
+	@echo "\n${COLOR_WHITE}${NAME}: \
+	${COLOR_GREEN}objects were created${COLOR_WHITE}"
 	@${CC} ${CFLAGS} ${LIBFT} ${MLXFLAGS} ${OBJS} -o $@
 	@echo "${COLOR_LBLUE}${NAME}: finished!!${COLOR_WHITE}"
 
