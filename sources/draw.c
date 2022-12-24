@@ -6,13 +6,13 @@
 /*   By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:57:31 by mingkang          #+#    #+#             */
-/*   Updated: 2022/12/23 21:44:13 by mingkang         ###   ########.fr       */
+/*   Updated: 2022/12/24 13:02:55 by mingkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	put_pixel(t_data *data, int x, int y, int color)
+static void	put_pixel(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -23,7 +23,7 @@ void	put_pixel(t_data *data, int x, int y, int color)
 	}
 }
 
-void	get_variation(t_point *s, t_point *f, int *variation)
+static void	get_variation(t_point *s, t_point *f, int *variation)
 {
 	if (s->x > f->x)
 		variation[0] = -1;
@@ -35,7 +35,7 @@ void	get_variation(t_point *s, t_point *f, int *variation)
 		variation[1] = 1;
 }
 
-void	draw_line(t_point *s, t_point *f, t_data *data)
+static void	draw_line(t_point *s, t_point *f, t_data *data)
 {
 	const int	wdt_hgt[2] = {absl(f->x - s->x), absl(f->y - s->y)};
 	int			variation[2];
@@ -64,7 +64,7 @@ void	draw_line(t_point *s, t_point *f, t_data *data)
 	free(f);
 }
 
-void	draw_background(t_data *data)
+static void	draw_background(t_data *data)
 {
 	int	x;
 	int	y;

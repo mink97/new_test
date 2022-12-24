@@ -6,13 +6,13 @@
 /*   By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:57:24 by mingkang          #+#    #+#             */
-/*   Updated: 2022/12/23 12:22:44 by mingkang         ###   ########.fr       */
+/*   Updated: 2022/12/24 12:55:56 by mingkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-double	get_ratio(int cur, int s, int f)
+static double	get_ratio(int cur, int s, int f)
 {
 	double	ratio;
 
@@ -22,7 +22,7 @@ double	get_ratio(int cur, int s, int f)
 	return (ratio);
 }
 
-int	ft_lerp(int s, int f, double ratio)
+static int	ft_lerp(int s, int f, double ratio)
 {
 	int	value;
 

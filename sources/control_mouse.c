@@ -6,7 +6,7 @@
 /*   By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:57:28 by mingkang          #+#    #+#             */
-/*   Updated: 2022/12/23 20:47:15 by mingkang         ###   ########.fr       */
+/*   Updated: 2022/12/24 15:07:11 by mingkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int	mouse_press(int button, int x, int y, void *vars)
 {
 	t_data	*data;
 
+	(void)x;
+	(void)y;
 	data = (t_data *)vars;
 	if (button == M_WHEEL)
 		data->handle->wheel_hold = TRUE;
@@ -59,23 +61,10 @@ int	mouse_release(int button, int x, int y, void *vars)
 	t_data	*data;
 
 	data = (t_data *)vars;
+	(void)x;
+	(void)y;
+	(void)button;
 	data->handle->wheel_hold = FALSE;
 	draw_map(data);
 	return (0);
-}
-
-int	exit_hook(void *vars)
-{
-	write(1, "|quit fdf|\n", 11);
-	exit(0);
-}
-
-void	cntl_map(t_data *data)
-{
-	mlx_hook(data->win_ptr, ON_KEYDOWN, 0, key_press, data);
-	mlx_hook(data->win_ptr, ON_KEYUP, 0, key_release, data);
-	mlx_hook(data->win_ptr, ON_MOUSEDOWN, 0, mouse_press, data);
-	mlx_hook(data->win_ptr, ON_MOUSEUP, 0, mouse_release, data);
-	mlx_hook(data->win_ptr, ON_MOUSEMOVE, 0, mouse_move, data);
-	mlx_hook(data->win_ptr, ON_DESTROY, 0, exit_hook, data);
 }

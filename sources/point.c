@@ -6,13 +6,13 @@
 /*   By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:57:39 by mingkang          #+#    #+#             */
-/*   Updated: 2022/12/23 20:31:26 by mingkang         ###   ########.fr       */
+/*   Updated: 2022/12/24 13:27:24 by mingkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	rotate_x(t_point *point, double gamma)
+static void	rotate_x(t_point *point, double gamma)
 {
 	int	prev_y;
 	int	prev_z;
@@ -23,7 +23,7 @@ void	rotate_x(t_point *point, double gamma)
 	point->z = -prev_y * sin(gamma) + prev_z * cos(gamma);
 }
 
-void	rotate_y(t_point *point, double beta)
+static void	rotate_y(t_point *point, double beta)
 {
 	int	prev_x;
 	int	prev_z;
@@ -34,7 +34,7 @@ void	rotate_y(t_point *point, double beta)
 	point->z = -prev_x * sin(beta) + prev_z * cos(beta);
 }
 
-void	rotate_z(t_point *point, double alpha)
+static void	rotate_z(t_point *point, double alpha)
 {
 	int	prev_x;
 	int	prev_y;
@@ -45,7 +45,7 @@ void	rotate_z(t_point *point, double alpha)
 	point->y = prev_x * sin(alpha) + prev_y * cos(alpha);
 }
 
-void	change_projection(t_point *point, t_prjc prjc)
+static void	change_projection(t_point *point, t_prjc prjc)
 {
 	int	prev_x;
 	int	prev_y;

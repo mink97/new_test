@@ -32,9 +32,9 @@ typedef enum e_bool
 typedef enum e_color
 {
 	GRAY = 0xCDC9C9,
-	PLUM = 0xDDA0DD,
-	SKYBLUE = 0xB0E2FF,
-	CORAL = 0xFF7256,
+	SKY_BLUE = 0x6495ED,
+	NVJ_WHITE = 0xFFDEAD,
+	CORAL = 0xF08080,
 	BLACK = 0x1C1C1C
 }	t_color;
 
@@ -141,18 +141,17 @@ typedef struct s_data
 }	t_data;
 
 /*
-** color_utils.c
+** utils.c
 */
 int		create_trgb(int t, int r, int g, int b);
 int		get_r(int trgb);
 int		get_g(int trgb);
 int		get_b(int trgb);
+void	ft_error(char *str);
 
 /*
 ** color.c
 */
-double	get_ratio(int cur, int s, int f);
-int		ft_lerp(int s, int f, double ratio);
 int		get_color(t_point cur, t_point s, t_point f, const int *wdt_hgt);
 
 /*
@@ -163,55 +162,38 @@ int		get_max(int a, int b);
 int		get_min(int a, int b);
 
 /*
-** control.c
+** control_mouse.c
 */
 int		mouse_move(int x, int y, void *vars);
 int		mouse_press(int button, int x, int y, void *vars);
 int		mouse_release(int button, int x, int y, void *vars);
-void	cntl_map(t_data *data);
 
 /*
-** control_2.c
+** control_key.c
 */
 int		key_press(int keycode, void *vars);
 int		key_release(int keycode, void *vars);
-
-/*
-** control_utils.c
-*/
-void	set_projection(int key_code, t_data *data);
-int		exit_hook(void *vars);
+void	cntl_map(t_data *data);
 
 /*
 ** draw.c
 */
-void	put_pixel(t_data *data, int x, int y, int color);
-void	get_variation(t_point *s, t_point *f, int *variation);
-void	draw_line(t_point *s, t_point *f, t_data *data);
-void	draw_background(t_data *data);
 void	draw_map(t_data *data);
 
 /*
-** fdf_utils.c
+** init_map.c
 */
-void	free_strs(char **strs);
-void	ft_error(char *str);
+t_map	*init_map(char **argv);
 
 /*
 ** point.c
 */
-void	rotate_x(t_point *point, double gamma);
-void	rotate_y(t_point *point, double beta);
-void	rotate_z(t_point *point, double alpha);
-void	change_projection(t_point *point, t_prjc prjc);
 t_point	*get_vertex(t_point *point, t_data *data);
 
 /*
 ** init.c
 */
-void	init_camera(t_data *data);
-t_data	*init_mlx(t_map *map);
-void	parse_map(char **argv, t_map *map, t_list **lst);
-void	read_map(t_map *map, t_list **lst);
+void	set_camera(int keycode, t_data *data);
+t_data	*init_mlx(char **argv);
 
 #endif

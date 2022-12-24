@@ -6,15 +6,20 @@
 /*   By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:57:36 by mingkang          #+#    #+#             */
-/*   Updated: 2022/12/23 20:36:37 by mingkang         ###   ########.fr       */
+/*   Updated: 2022/12/24 13:42:58 by mingkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-// #define DEBUG
 
-void	init_camera(t_data *data)
+void	set_camera(int keycode, t_data *data)
 {
+	if (keycode == K_CODE_P)
+		data->cam->prjc = PARALLEL;
+	else if (keycode == K_CODE_O)
+		data->cam->prjc = OBLIQUE;
+	else if (keycode == K_CODE_I)
+		data->cam->prjc = ISOMETRIC;
 	data->cam->alpha = 0;
 	data->cam->beta = 0;
 	data->cam->gamma = 0;
@@ -25,7 +30,7 @@ void	init_camera(t_data *data)
 	data->cam->z_factor = get_max(data->map->z_max / data->map->height * 2, 1);
 }
 
-t_data	*init_mlx(t_map *map)
+t_data	*init_mlx(char **argv)
 {
 	t_data		*data;
 
@@ -40,79 +45,13 @@ t_data	*init_mlx(t_map *map)
 		ft_error("error - failed to initialize mlx");
 	data->addr = mlx_get_data_addr(data->img, \
 		&(data->bpp), &(data->size_line), &(data->endn));
-	data->map = map;
+	data->map = init_map(argv);
 	data->cam = malloc(sizeof(t_camera) * 1);
 	if (data->cam == NULL)
 		ft_error("error - failed to malloc camera");
+	set_camera(K_CODE_I, data);
 	data->handle = malloc(sizeof(t_handle) * 1);
 	if (data->handle == NULL)
 		ft_error("error - failed to malloc handle");
 	return (data);
-}
-
-void	parse_map(char **argv, t_map *map, t_list **lst)
-{
-	int		i;
-	int		fd;
-	char	*line;
-	char	**strs;
-	t_list	*new;
-
-	i = 0;
-	fd = open(argv[1], O_RDONLY);
-	line = get_next_line(fd);
-	map->width = word_cnt(line, ' ');
-	while (line > 0)
-	{
-		strs = ft_split(line, ' ');
-		new = ft_lstnew(strs);
-		ft_lstadd_back(lst, new);
-		free(line);
-		line = get_next_line(fd);
-		i++;
-	}
-	map->height = i;
-	close(fd);
-}
-
-void	fill_node(t_point *node, char **strs, int x, int y)
-{
-	char	**buf;
-
-	buf = ft_split(*strs, ',');
-	node->x = x;
-	node->y = y;
-	node->z = ft_atoi(buf[0]);
-	if (buf[1])
-		node->color = ft_atoi_base(&buf[1][2], "0123456789ABCDEF", 16);
-	else
-		node->color = 0xffffff;
-	free_strs(buf);
-}
-
-void	read_map(t_map *map, t_list **lst)
-{
-	int		i;
-	int		j;
-	int		k;
-	char	**strs;
-	t_list	*tmp;
-
-	map->z_max = 0;
-	tmp = *lst;
-	k = 0;
-	i = -1;
-	while (++i < map->height)
-	{
-		j = -1;
-		strs = tmp->content;
-		while (++j < map->width)
-		{
-			fill_node(map->nodes + (k++), strs + j, j, i);
-			if ((map->nodes)[k - 1].z > map->z_max)
-				map->z_max = (map->nodes)[k - 1].z;
-		}
-		tmp = tmp->next;
-	}
-	ft_lstclear(lst, free_strs);
 }

@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_utils.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 10:57:41 by mingkang          #+#    #+#             */
-/*   Updated: 2022/12/23 14:36:24 by mingkang         ###   ########.fr       */
+/*   Created: 2022/11/11 13:51:43 by mingkang          #+#    #+#             */
+/*   Updated: 2022/11/11 14:11:17 by mingkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	free_strs(char **strs)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	size_t	i;
+	t_list	*dummy;
+	t_list	*tmp;
 
-	i = 0;
-	while (strs[i] != NULL)
+	if (lst == 0 || del == 0)
+		return ;
+	tmp = *lst;
+	while (tmp != 0)
 	{
-		free(strs[i]);
-		strs[i] = NULL;
-		i++;
+		dummy = tmp;
+		tmp = tmp->next;
+		ft_lstdelone(dummy, del);
 	}
-	free(strs);
-}
-
-void	ft_error(char *str)
-{
-	perror(str);
-	exit(EXIT_FAILURE);
+	*lst = 0;
 }
