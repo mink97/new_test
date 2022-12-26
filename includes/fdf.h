@@ -6,7 +6,7 @@
 /*   By: mingkang <mingkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 07:49:11 by mingkang          #+#    #+#             */
-/*   Updated: 2022/12/24 16:24:42 by mingkang         ###   ########.fr       */
+/*   Updated: 2022/12/26 10:34:25 by mingkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,6 @@ int		create_trgb(int t, int r, int g, int b);
 int		get_r(int trgb);
 int		get_g(int trgb);
 int		get_b(int trgb);
-void	ft_error(char *str);
 
 /*
 ** color.c
@@ -160,6 +159,7 @@ int		get_color(t_point cur, t_point s, t_point f, const int *wdt_hgt);
 int		absl(int num);
 int		get_max(int a, int b);
 int		get_min(int a, int b);
+void	ft_error(char *str);
 
 /*
 ** control_mouse.c
